@@ -4,7 +4,7 @@ FROM jboss/base-jdk:8
 EXPOSE 9042 9160 7000 7001
 
 
-ENV CASSANDRA_VERSION="3.10" \
+ENV CASSANDRA_VERSION="3.11.1" \
     CASSANDRA_HOME="/opt/apache-cassandra" \
     HOME="/home/cassandra" \
     PATH="/opt/apache-cassandra/bin:$PATH" 
@@ -16,16 +16,16 @@ RUN yum install -y -q bind-utils && \
    yum clean all
 
 RUN cd /opt &&\
-	curl -LO http://apache.uvigo.es/cassandra/3.10/apache-cassandra-3.10-bin.tar.gz && ls -l &&\ 
-    tar xvzf apache-cassandra-3.10-bin.tar.gz && \
-    rm apache-cassandra-3.10-bin.tar.gz && \
-    ln -s apache-cassandra-3.10 apache-cassandra
+	curl -LO http://apache.uvigo.es/cassandra/3.11.1/apache-cassandra-3.11.1-bin.tar.gz && ls -l &&\ 
+    tar xvzf apache-cassandra-3.11.1-bin.tar.gz && \
+    rm apache-cassandra-3.11.1-bin.tar.gz && \
+    ln -s apache-cassandra-3.11.1 apache-cassandra
 
 
 #COPY cassandra-lucene-index-plugin-3.0.10.3.jar \
 #     /opt/apache-cassandra/lib/
 
-#COPY cassandra-lucene-index-plugin-3.10.0-RC1-SNAPSHOT.jar \
+#COPY cassandra-lucene-index-plugin-3.11.1.0-RC1-SNAPSHOT.jar \
 #     /opt/apache-cassandra/lib/     
 
 COPY docker-entrypoint.sh \
