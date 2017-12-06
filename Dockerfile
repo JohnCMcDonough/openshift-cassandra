@@ -16,10 +16,10 @@ RUN yum install -y -q bind-utils && \
    yum clean all
 
 RUN cd /opt &&\
-	curl -LO http://apache.uvigo.es/cassandra/$CASSANDRA_VERSION/apache-cassandra-$CASSANDRA_VERSION-bin.tar.gz && ls -l &&\ 
-    tar xvzf apache-cassandra-$CASSANDRA_VERSION-bin.tar.gz && \
-    rm apache-cassandra-$CASSANDRA_VERSION-bin.tar.gz && \
-    ln -s apache-cassandra-$CASSANDRA_VERSION apache-cassandra
+	curl -LO http://apache.uvigo.es/cassandra/3.10/apache-cassandra-3.10-bin.tar.gz && ls -l &&\ 
+    tar xvzf apache-cassandra-3.10-bin.tar.gz && \
+    rm apache-cassandra-3.10-bin.tar.gz && \
+    ln -s apache-cassandra-3.10 apache-cassandra
 
 
 #COPY cassandra-lucene-index-plugin-3.0.10.3.jar \
@@ -41,9 +41,9 @@ RUN groupadd -r cassandra -g 312 && \
     useradd -u 313 -r -g cassandra -d /opt/apache-cassandra -s /sbin/nologin cassandra && \
     chown -R cassandra:cassandra /opt/apache-cassandra && \
     chmod -R go+rw /opt/apache-cassandra && \
-    mkdir $HOME && \
-    chown -R cassandra:cassandra $HOME && \
-    chmod -R go+rw $HOME
+    mkdir /home/cassandra && \
+    chown -R cassandra:cassandra /home/cassandra && \
+    chmod -R go+rw /home/cassandra
 
 RUN  mkdir -p /var/lib/cassandra \
 	&& chown -R cassandra:cassandra /var/lib/cassandra \
